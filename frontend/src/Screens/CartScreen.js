@@ -4,7 +4,7 @@ import { addToCart, removeFromCart } from '../actions/cartActions';
 import MessageBox from '../components/MessageBox';
 import { Link } from 'react-router-dom';
 
-const CartScreen = ({ match, location }) => {
+const CartScreen = ({ match, location, history }) => {
 	const productId = match.params.id;
 	const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 	const cart = useSelector((state) => state.cart);
@@ -20,7 +20,7 @@ const CartScreen = ({ match, location }) => {
 		dispatch(removeFromCart(id));
 	};
 
-	const checkoutHandler = ({ history }) => {
+	const checkoutHandler = () => {
 		history.push('/signin?redirect=shipping');
 	};
 	return (
